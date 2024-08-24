@@ -1,3 +1,44 @@
+fun evaluarExpresionSimple(expresion: String): Double {
+    val operadores = listOf('+', '-', '*', '/')
+    var resultado = 0.0
+    var operador = '+'
+    var numero = ""
+
+    for (caracter in expresion) {
+        if (caracter in operadores) {
+            resultado = operar(resultado, operador, numero.toDouble())
+            operador = caracter
+            numero = ""
+        } else {
+            numero += caracter
+        }
+    }
+
+    if (numero.isNotEmpty()) {
+        resultado = operar(resultado, operador, numero.toDouble())
+    }
+
+    return resultado
+}
+
+fun operar(a: Double, operador: Char, b: Double): Double {
+    return when (operador) {
+        '+' -> a + b
+        '-' -> a - b
+        '*' -> a * b
+        '/' -> if (b != 0.0) a / b else Double.NaN
+        else -> Double.NaN
+    }
+}
+
+fun OperacionesCombinadas() {
+    println("Ingrese la expresión matemática que desea calcular (por ejemplo, 2+3-4*5/2):")
+    val expresion = readLine()?.replace(" ", "") ?: ""
+
+    val resultado = evaluarExpresionSimple(expresion)
+    println("El resultado de la expresión '$expresion' es: $resultado")
+}
+
 fun Suma() {
     println("Ingrese el primer valor:")
     val num1 = readLine()?.toIntOrNull() ?: 0
@@ -55,7 +96,8 @@ fun main() {
         println("2. Resta")
         println("3. Multiplicación")
         println("4. División")
-        println("5. Salir")
+        println("5. Operaciones combinadas")
+        println("6. Salir")
         print("Seleccione una opción: ")
         option = readLine()?.toIntOrNull() ?: 0
 
@@ -64,11 +106,12 @@ fun main() {
             2 -> Resta()
             3 -> Multiplicacion()
             4 -> Division()
-            5 -> println("Programa finalizado")
+            5 -> OperacionesCombinadas()
+            6 -> println("Saliendo del programa...")
             else -> println("Opcion invalida.")
         }
 
         println()
 
-    } while (option != 5)
+    } while (option != 6)
 }

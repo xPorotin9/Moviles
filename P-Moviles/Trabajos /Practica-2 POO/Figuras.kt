@@ -1,7 +1,7 @@
 // Descripción: Clase para Producto con precio, descuento, cálculo del precio final.
 // Autor: Jose C. Machaca
-// Fecha creación: 2024-31-08
-// Fecha última modificación: 2024-30-08
+// Fecha creación: 2024-30-08
+// Fecha última modificación: 2024-31-08
 
 import java.util.Scanner
 
